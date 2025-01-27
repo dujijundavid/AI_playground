@@ -1,6 +1,9 @@
 #patent folder
 patent/
-
+patent_outputs/
+*.txt
+archive/
+chroma_db/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
