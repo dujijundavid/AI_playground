@@ -257,8 +257,9 @@ for task_name in ["initial_idea", "innovation", "qa", "customization", "deep_imp
     user_prompt = build_prompt_for_step(task_name, tasks, results)
     
     # 按照要求：默认使用 "gpt-4o-mini"，最后一步改用更高级 "gpt-o1-mini"
-    if task_name == "deep_improvement":
+    if task_name == "deep_improvement" or "innovation":
         model_to_use = "gpt-4o"  # 高级模型
+        # model_to_use = "o1-mini"  # 高级模型
     else:
         model_to_use = "gpt-4o-mini"  # 默认模型
 
