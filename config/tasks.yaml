@@ -1,101 +1,101 @@
-initial_idea:
-  description: |
-    ### Step1: Description Information
+steps:
+  - step_name: "initial_idea"
+    description: |
+      ### Step 1: Description Information
 
-    **Objective:**
-    Assist in conceptualizing and organizing Mercedes-Benz's initial patent ideas.
+      **Objective:**
+      Assist in conceptualizing and organizing Mercedes-Benz's initial patent ideas.
 
-    **Core Issues to Address:**
-    [Describe the technical problems or needs in detail]
+      **Core Issues to Address:**
+      [Describe the technical problems or needs in detail.]
 
-    **Task Instructions:**
-    Please, as a **Stanford University graduate Tesla Data Scientist and CATL Electrochemical Expert**, consider my viewpoint and help me think through and improve this idea. The output should be highly logical, creative, and critically analytical.
+      **Task Instructions:**
+      As a **Stanford University graduate Tesla Data Scientist** and **CATL Electrochemical Expert**, consider my viewpoint and help me think through and improve this idea. The output should be highly logical, creative, and critically analytical.
 
-    **Requirements:**
-    1. Provide at least three specific improvement suggestions.
-    2. Each suggestion should include detailed explanations and potential technical implementation methods.
-  max_tokens: 600
+      **Requirements:**
+      1. Provide at least three specific improvement suggestions.
+      2. Each suggestion should include detailed explanations and potential technical implementation methods.
+    max_tokens: 600
 
-innovation:
-  description: |
-    ### Step2: Interactive Innovation Mining
+  - step_name: "innovation"
+    description: |
+      ### Step 2: Interactive Innovation Mining
 
-    **Task Background:**
-    Based on the initial idea, identify and mine new patentable innovations.
+      **Task Background:**
+      Based on the initial idea, identify and mine new patentable innovations.
 
-    **Task Instructions:**
-    Please, as a top **OpenAI Prompt Engineer**, ask effective questions and discover at least three new patent innovations. Describe each innovation's uniqueness and potential applications in detail.
+      **Task Instructions:**
+      As a **Top OpenAI Prompt Engineer**, ask effective questions and discover at least three new patent innovations. Describe each innovation's uniqueness and potential applications in detail.
 
-    **Requirements:**
-    1. Each innovation should include background information, innovative aspects, and advantages.
-    2. Logical clarity, step-by-step, facilitating subsequent patent writing.
-    3. Evaluate and select the most feasible and suitable patents for Mercedes.
-  max_tokens: 900
+      **Requirements:**
+      1. Each innovation should include background information, innovative aspects, and advantages.
+      2. Logical clarity, step-by-step, facilitating subsequent patent writing.
+      3. Evaluate and select the most feasible and suitable patents for Mercedes.
+    max_tokens: 900
 
-qa:
-  description: |
-    ### Step3: Raise Common Questions
+  - step_name: "qa"
+    description: |
+      ### Step 3: Raise Common Questions
 
-    **Task Background:**
-    To ensure the comprehensiveness and depth of patent writing, a series of common questions need to be answered.
+      **Task Background:**
+      To ensure the comprehensiveness and depth of patent writing, a series of common questions need to be answered.
 
-    **Task Instructions:**
-    Please, as a senior patent expert, provide detailed answers to the following questions:
+      **Task Instructions:**
+      As a **Senior Patent Expert**, provide detailed answers to the following questions:
 
-    1. What work has been done for this invention?
-    2. What technical problems does this invention solve?
-    3. Are you aware of related background knowledge or existing technologies (e.g., patent literature, competitors), and what are their shortcomings?
-    4. What is the solution to the problem?
-    5. What beneficial effects and/or advantages can this invention achieve?
-    6. Summarize the core content of this invention in English in a brief abstract.
+      1. What work has been done for this invention?
+      2. What technical problems does this invention solve?
+      3. Are you aware of related background knowledge or existing technologies (e.g., patent literature, competitors), and what are their shortcomings?
+      4. What is the solution to the problem?
+      5. What beneficial effects and/or advantages can this invention achieve?
+      6. Summarize the core content of this invention in English in a brief abstract.
 
-    **Requirements:**
-    1. Each answer should be detailed and specific.
-    2. Use professional terminology to ensure accuracy and authority.
-  max_tokens: 1200
+      **Requirements:**
+      1. Each answer should be detailed and specific.
+      2. Use professional terminology to ensure accuracy and authority.
+    max_tokens: 1200
 
-customization:
-  description: |
-    ### Step4: Technical Details and Patent Writing
+  - step_name: "customization"
+    description: |
+      ### Step 4: Technical Details and Patent Writing
 
-    **Task Background:**
-    Based on the previous outputs, design the technical details of the patent and write a complete patent document.
+      **Task Background:**
+      Based on the previous outputs, design the technical details of the patent and write a complete patent document.
 
-    **Task Instructions:**
-    Please, as a **Patent Writer**, collaborate with mathematicians, deep learning researchers, and Mercedes-Benz data scientists to write a patent containing mathematical formulas, rules, and deep learning methods. Specific requirements are as follows:
+      **Task Instructions:**
+      As a **Patent Writer**, collaborate with mathematicians, deep learning researchers, and Mercedes-Benz data scientists to write a patent containing mathematical formulas, rules, and deep learning methods. Specific requirements are as follows:
 
-    1. **Mathematical Formulas**: Optimize and add logic and formulas, using formats directly pasteable into Word (do not use LaTeX), and standard mathematical symbols (e.g., ∑, xᵢ, yⱼ, ∫, ⊕, ⊗, matrix representations).
-    2. **Technical Implementation**: Add more technical implementation and algorithm details to ensure the content is highly technical and actionable.
-    3. **Structure and Format**: Refer to the following sample patent cases to ensure the content structure is clear and logical.
+      1. **Mathematical Formulas**: Optimize and add logic and formulas, using formats directly pasteable into Word (do not use LaTeX), and standard mathematical symbols (e.g., ∑, xᵢ, yⱼ, ∫, ⊕, ⊗, matrix representations).
+      2. **Technical Implementation**: Add more technical implementation and algorithm details to ensure the content is highly technical and actionable.
+      3. **Structure and Format**: Refer to the following sample patent cases to ensure the content structure is clear and logical.
 
-    **Sample Patent Cases:**
-    [Insert summaries or links to approved patent cases here]
+      **Sample Patent Cases:**
+      [Insert summaries or links to approved patent cases here]
 
-    **Requirements:**
-    1. The patent document should be written in Chinese.
-    2. Think deeply and improve, highlighting existing patent system highlights or missing parts, and supplement and optimize.
-    3. The overall output should exceed 2000 characters, detailed and professional.
-  max_tokens: 8000
+      **Requirements:**
+      1. The patent document should be written in Chinese.
+      2. Think deeply and improve, highlighting existing patent system highlights or missing parts, and supplement and optimize.
+      3. The overall output should exceed 2000 characters, detailed and professional.
+      4. Do not write any summary.
+    max_tokens: 8000
 
-deep_improvement:
-  description: |
-    ### Step5: Deep Improvement
+  - step_name: "deep_improvement"
+    description: |
+      ### Step 5: Deep Improvement
 
-    **Task Background:**
-    Based on the previous four steps, further delve into the technical details, mathematical principles, deep learning algorithm processes, and comparisons with existing technologies, and refine and improve the final patent document.
+      **Task Background:**
+      Based on the previous four steps, further delve into the technical details, mathematical principles, deep learning algorithm processes, and comparisons with existing technologies, and refine and improve the final patent document.
 
-    **Task Instructions:**
-    Please, as a **Senior Patent Writing Consultant** and **Senior Algorithm Architect**, conduct deep improvements from the following perspectives:
+      **Task Instructions:**
+      As a **Senior Patent Writing Consultant** and **Senior Algorithm Architect**, conduct deep improvements from the following perspectives:
 
-    1. Review the feasibility, logic, and innovation of the previous steps' content.
-    2. Provide more technical details at the algorithm and mathematical formula level (e.g., model structure, training loss, data preprocessing, threshold setting).
-    3. Benchmark existing technologies or competitors, analyze their shortcomings, and highlight the novelty of the invention.
-    4. Improve the patent document structure, such as detailed sections: background technology, invention content, specific implementation methods, figure descriptions, claims, etc.
+      1. Review the feasibility, logic, and innovation of the previous steps' content.
+      2. Provide more technical details at the algorithm and mathematical formula level (e.g., model structure, training loss, data preprocessing, threshold setting).
+      3. Benchmark existing technologies or competitors, analyze their shortcomings, and highlight the novelty of the invention.
+      4. Improve the patent document structure, such as detailed sections: background technology, invention content, specific implementation methods, figure descriptions, claims, etc.
 
-    Please, based on the outputs of the previous four steps, reorganize into a more comprehensive, in-depth, and technically rich patent draft.
-
-    **Requirements:**
-    1. Write no less than 4000 words.
-    2. Mathematical formulas should be in a format directly pasteable into Word.
-    3. Logical rigor, clear paragraphs, and reflect technical depth and feasibility.
-  max_tokens: 16000
+      **Requirements:**
+      1. Write no less than 4000 words.
+      2. Mathematical formulas should be in a format directly pasteable into Word.
+      3. Logical rigor, clear paragraphs, and reflect technical depth and feasibility.
+    max_tokens: 16000

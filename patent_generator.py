@@ -2,7 +2,6 @@ import os
 import openai
 import re
 import yaml
-import pandas as pd
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -56,17 +55,33 @@ Please comply with the above instructions.
         print(f"OpenAI API error: {e}")
         return ""
 
-def build_prompt_for_step(step_name, tasks, results):
+def build_prompt_for_step(step_name, tasks_config, results):
     """
-    Construct the prompt for the current step, incorporating outputs from previous steps if necessary.
+    This function constructs a prompt for each step based on the `step_name`.
+    It retrieves the base prompt from the tasks configuration and applies 
+    any results from previous steps.
     """
-    base_prompt = tasks[step_name][0]
+    # Ensure the step_name exists in tasks_config
+    step_config = next((step for step in tasks_config['steps'] if step['step_name'] == step_name), None)
+    
+    if not step_config:
+        raise ValueError(f"Step '{step_name}' not found in tasks_config.")
+    
+    # Get the task configuration for the given step name
+    task_config = step_config
+    
+    # Print the task configuration (for debugging)
+    print(task_config)
+    
+    # Retrieve the base prompt (description field)
+    base_prompt = task_config.get('description', "")
 
-    if step_name == "initial_idea":
-        return base_prompt
+    # You can further customize the prompt with the results from previous steps, if necessary
+    # Example: Replace placeholders with previous results
+    for key, value in results.items():
+        base_prompt = base_prompt.replace(f"{{{key}}}", value)
 
-    previous_outputs = "\n\n".join([f"【{step} Output】\n{results.get(step, '')}" for step in tasks.keys() if step != step_name])
-    return f"{base_prompt}\n\n---\n\nPlease consider the following previous outputs:\n\n{previous_outputs}"
+    return base_prompt
 
 def estimate_cost(usage_metrics):
     """
@@ -98,7 +113,11 @@ def main():
     for task_name in ["initial_idea", "innovation", "qa", "customization", "deep_improvement"]:
         agent_key = f"{task_name}_agent"
         agent_info = agents_config.get(agent_key, {})
-        token_limit = tasks_config.get(task_name, [None, 3000])[1]
+
+        # Get the token limit safely, with a fallback value if not found
+        task_info = tasks_config.get(task_name, {})
+        token_limit = task_info.get('max_tokens', 3000)  # Default to 3000 if no limit provided
+
         user_prompt = build_prompt_for_step(task_name, tasks_config, results)
 
         # Determine model to use
