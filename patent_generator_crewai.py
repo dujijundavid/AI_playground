@@ -5,14 +5,20 @@ import os
 import re
 import yaml
 from dotenv import load_dotenv
-from crewai import Agent, Task, Crew, Process
+from crewai import Agent, Task, Crew, Process, LLM
 from crewai.project import CrewBase
 import pandas as pd
 
-# Load environment variables and set the OpenAI model
+# 加载环境变量
 load_dotenv()
-os.environ["OPENAI_MODEL_NAME"] = "gpt-4o-mini"
+api_key = os.getenv("DEEPSEEK_API_KEY")
 
+# 配置 DeepSeek LLM
+deepseek_llm = LLM(
+    model="deepseek/deepseek-chat",  # 或 "deepseek/deepseek-reasoner"
+    api_key=api_key,
+    temperature=0.7
+)
 # --------------------------
 # Load YAML Configurations
 # --------------------------
@@ -36,12 +42,30 @@ tasks_config = configs["tasks"]
 # Create Agents from YAML configuration
 # -----------------------------------------
 # Each agent is responsible for a particular patent drafting step.
-initial_idea_agent = Agent(config=agents_config["initial_idea_agent"])
-innovation_agent    = Agent(config=agents_config["innovation_agent"])
-qa_agent            = Agent(config=agents_config["qa_agent"])
-customization_agent = Agent(config=agents_config["customization_agent"])
-deep_improvement_agent = Agent(config=agents_config["deep_improvement_agent"])
+initial_idea_agent = Agent(
+    config=agents_config["initial_idea_agent"],
+    llm=deepseek_llm
+)
 
+innovation_agent = Agent(
+    config=agents_config["innovation_agent"],
+    llm=deepseek_llm
+)
+
+qa_agent = Agent(
+    config=agents_config["qa_agent"],
+    llm=deepseek_llm
+)
+
+customization_agent = Agent(
+    config=agents_config["customization_agent"],
+    llm=deepseek_llm
+)
+
+deep_improvement_agent = Agent(
+    config=agents_config["deep_improvement_agent"],
+    llm=deepseek_llm
+)
 # -----------------------------------------
 # Create Tasks using YAML configuration
 # -----------------------------------------
