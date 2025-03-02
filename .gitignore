@@ -4,7 +4,7 @@ patent_outputs/
 *.txt
 archive/
 chroma_db/
-
+*.md
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
