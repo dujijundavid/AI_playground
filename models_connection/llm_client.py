@@ -145,7 +145,7 @@ if __name__ == "__main__":
     )
    
     volcano_client = LLMClientFactory.create_client(
-        provider="volcano"
+        provider="volcano",
         model = "deepseek-r1-250120"
     )
         
