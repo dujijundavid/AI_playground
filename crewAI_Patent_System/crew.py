@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
+
 from crewai import Agent, Task, Crew, Process
 
 # Load environment variables from .env file
