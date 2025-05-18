@@ -1,0 +1,48 @@
+agents:
+  - name: creative_brainstorm_agent
+    role: Creative Brainstorm Agent
+    goal: 基于给定问题/场景，选择一个最佳方向，深入思考并且提出3 个相关且具有清晰技术思路的发明方案
+    backstory: 发散思维专家，善于从不同角度提供具有潜在专利价值的创新点
+  - name: idea_evaluator_agent
+    role: Idea Evaluator Agent
+    goal: 对比 3 个想法的技术可行性、市场潜力、法律风险等，并选出最优方案
+    backstory: 具备丰富的商业和专利评估经验
+  - name: qa_agent
+    role: Senior Patent Expert
+    goal: 就选定发明想法回答标准专利撰写问题（技术问题、现有技术、核心创新点等）
+    backstory: 专利法背景深厚，擅长专利技术与法律风险审阅
+  - name: deep_improvement_agent
+    role: Deep Improvement Agent
+    goal: 审阅并深度改进已有专利草稿，补充技术细节、商业模式、规避设计等
+    backstory: 资深多领域专家，拥有批判性思维和专利实战经验
+  - name: review_explanation_agent
+    role: Review Clarification Agent
+    goal: 阅读最终文档，列出可能难以理解的 5 个问题，并给出专业、简洁的解答
+    backstory: 能够从读者视角发现潜在疑问，并提供详细且易于理解的回答
+
+tasks:
+  - agent: creative_brainstorm_agent
+    description: |
+      初始想法背景：\n{initial_idea_content}\n\n请围绕【具体的技术/业务问题】头脑风暴出 3 个完全独立、互不重叠的解决方案；每个方案都需要具备清晰的技术原理、潜在应用场景和实现要点，并注意：若出现公式或算法描述，请使用可直接粘贴到 Word 的符号，如 ∑, xᵢ, yⱼ, ⊕ 等，不要使用 LaTeX。\n\n在输出中：1) 以列表形式给出 3 个想法；2) 对每个想法分别阐述核心技术、可能应用场景；3) 不要合并想法或进行融合。
+    expected_output: 以 Markdown 列表形式给出 3 个分隔明确的创新点；对各自的可行性、应用、关键技术进行简要阐述。
+    output_file: brainstorm_ideas.md
+  - agent: idea_evaluator_agent
+    description: |
+      请阅读前一任务（3 个想法）的输出（文件：{prev_output_file}），对比它们在技术难度、原创性、等方面的优缺点，选出一个【最优】想法；并说明其它两个想法被淘汰的主要原因。\n\n最终输出：只需要保留被选中想法的核心描述，并附带其他两个想法的缺点总结。
+    expected_output: 1) 最优想法的详细描述；2) 两个被淘汰想法的缺点或被淘汰原因。
+    output_file: selected_idea.md
+  - agent: qa_agent
+    description: |
+      基于【上一步选出的最佳想法】（文件：{prev_output_file}），回答以下标准专利撰写问题：\n1) 该发明要解决的技术问题是什么？\n2) 现有类似技术有哪些？它们的不足或难点？\n3) 本发明的核心技术方案及实现方式；若需公式，请使用 ∑, xᵢ 等 Unicode 符号。\n4) 该发明所带来的优势和创新点；\n5) 简要的发明摘要。\n\n请使用专业且易理解的语言描述，并保证可直接粘贴到 Word。
+    expected_output: 针对 1)~5) 的完整回答，能够用于专利草稿的核心描述。
+    output_file: qa_answers.md
+  - agent: deep_improvement_agent
+    description: |
+      现在我们已有一份专利草稿（文件：{prev_output_file}），请根据最佳实践做深度改进，并特别注意以下几点：\n1) 检查是否可补充更完整的技术细节（如算法步骤或公式，可用 ∫, ⊗, xᵢ, yⱼ 等符号）；\n2) 思考是否可能加入更多的技术细节，如深度学习或者LLM中的算法，以增加专利的技术深度；\n3) 思考是否应该加入阈值方便专利的原创性。；\n3) 综合各方面优化，使整体更易通过审查；\n4) 若涉及计算过程，请确保公式能被 Word 直接使用（无需 LaTeX）。\n\n请输出改进后的完整专利草稿，确保语言简洁专业、条理清晰。
+    expected_output: 改进后的专利草稿全文。
+    output_file: deep_improved_draft.md
+  - agent: review_explanation_agent
+    description: |
+      阅读前面所有步骤后得到的最终专利草稿（文件：{prev_output_file}），列出 5 个可能让读者感到困惑或难以理解的问题，并针对每个问题进行简要而准确的回答。\n\n你的输出应包括：1) 清晰列出 5 个问题；2) 逐一给出回答，侧重解释疑点和提供必要的背景或技术补充；3) 保证回答在专业性与可理解度之间达到平衡。
+    expected_output: 最终输出中含 5 个问答对，每个问答都要明确问题点和解答要点。
+    output_file: confusion_and_answers.md 

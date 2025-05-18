@@ -1,28 +1,29 @@
+
 import os
 from dotenv import load_dotenv
-from langchain_community.chat_models import ChatOpenAI
-
+from langchain_openai import ChatOpenAI
 from crewai import Agent, Task, Crew, Process
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Initialize the language model
+
+
 # llm = ChatOpenAI(
-#     model_name="gpt-3.5-turbo",
+#     model_name="gpt-4o-mini",
 #     temperature=0.7,
 #     openai_api_key=os.getenv("OPENAI_API_KEY")
 # )
-llm = ChatOpenAI(
-model_name="deepseek-chat",
-temperature=0.7,
-openai_api_key=os.getenv("DEEPSEEK_API_KEY"),
-openai_api_base="https://api.deepseek.com/v1"
 
+# Initialize DeepSeek LLM with proper configuration
+llm = ChatOpenAI(
+    model="deepseek/deepseek-chat",  # Include provider prefix
+    temperature=0.7,
+    openai_api_key=os.getenv("DEEPSEEK_API_KEY"),
+    base_url="https://api.deepseek.com/v1"  # Correct parameter name for API base
 )
 
-
-
+# Rest of your agent and crew setup remains the same...
 # Define agents with detailed roles, goals, and backstories
 initial_idea_agent = Agent(
     role="Harvard graduate McKinsey Consultant",
@@ -74,7 +75,7 @@ initial_idea_task = Task(
 
 innovation_task = Task(
     description="""Identify and mine new patentable innovations. Propose effective questions and provide at least three new patent innovation points. For each, describe its uniqueness, background, and potential applications. Evaluate and select the most relevant innovations for Mercedes-Benz.""",
-    expected_output="Three innovative points with clear descriptions, uniqueness, and applications.",
+    expected_output="2 innovative points in one direction, with clear descriptions, uniqueness, and applications.",
     agent=innovation_agent,
     output_file="innovations.md"
 )
